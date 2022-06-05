@@ -27,7 +27,19 @@ const createWindow = (url) => {
     })
     windows.add(window)
     window.loadURL(url);
-    
+    // https://www.electronjs.org/docs/latest/api/web-contents
+    window.webContents.on('before-input-event', (event, input) => {
+      if (input.alt && input.code === 'ArrowLeft') {
+        window.webContents.goBack();
+        event.preventDefault()
+      } else if (input.alt && input.code === 'ArrowRight') {
+        window.webContents.goForward();
+        event.preventDefault()
+      } else if (input.control && input.key.toLowerCase() === 'h') {
+        window.webContents.loadURL('https://docs.google.com/document/u/0/');
+        event.preventDefault()
+      }
+    });
     window.webContents.on('new-window', (event, url) => {
       event.preventDefault()
       if (url.match(/^https:\/\/docs.google.com\/document/)) {
@@ -36,7 +48,7 @@ const createWindow = (url) => {
         exec(`start ${url}`)
       }
     })
-    
+
     // window.webContents.openDevTools();
 
     window.on("closed", () => {
