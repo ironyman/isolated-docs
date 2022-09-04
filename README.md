@@ -19,3 +19,6 @@ npm run package
 `Alt + left`: go back
 
 `Alt + right`: go forward
+
+## Profile
+Chrome profile is created in `$env:APPDATA\isolated-docs`.
