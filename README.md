@@ -12,3 +12,10 @@ Add-MpPreference -ExclusionPath .\build\isolated-docs-win32-x64
 ```
 npm run package
 ```
+
+## Hotkeys
+`Ctrl + H`: go home
+
+`Alt + left`: go back
+
+`Alt + right`: go forward
